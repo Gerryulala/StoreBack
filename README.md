@@ -6,7 +6,7 @@ Para insertar datos a la bd local
 2- Use NombreDElaBD
 
 Para insertar datos a la bd produccion
-1- mongosh "mongodb+srv://gerardourb04:RIzXejvOuLe7bMIR@cluster0.rf3xsjh.mongodb.net/NombreDElaBD"
+1- mongosh "mongodb+srv://URLdeTuMongoBDAtlas"
 
 
 | #   | Consulta                                                                                    | ¿Qué hace?                                                    |
