@@ -1,39 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
+const Filter = require('bad-words');
+const filter = new Filter();
 
 // GET /products
 router.get('/', async(req, res) => {
-    const filter = {};
-
-    // Filtro por nombre exacto
-    if (req.query.name) {
-        filter.name = req.query.name;
-    }
-
-    // Filtro por categoría
-    if (req.query.category) {
-        filter.category = req.query.category;
-    }
-
-    // Precio mínimo
-    if (req.query.minPrice) {
-        filter.price = {...filter.price, $gte: parseFloat(req.query.minPrice) };
-    }
-
-    // Precio máximo
-    if (req.query.maxPrice) {
-        filter.price = {...filter.price, $lte: parseFloat(req.query.maxPrice) };
-    }
+    const query = {};
+    if (req.query.name) query.name = req.query.name;
+    if (req.query.category) query.category = req.query.category;
+    if (req.query.minPrice) query.price = {...query.price, $gte: parseFloat(req.query.minPrice) };
+    if (req.query.maxPrice) query.price = {...query.price, $lte: parseFloat(req.query.maxPrice) };
 
     try {
-        const products = await Product.find(filter);
+        const products = await Product.find(query);
         res.json(products);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener productos' });
     }
 });
-
 
 // GET /products/:id
 router.get('/:id', async(req, res) => {
@@ -49,6 +34,10 @@ router.get('/:id', async(req, res) => {
 // POST /products
 router.post('/', async(req, res) => {
     try {
+        // Censura de texto
+        if (req.body.name) req.body.name = filter.clean(req.body.name);
+        if (req.body.category) req.body.category = filter.clean(req.body.category);
+
         const newProduct = new Product(req.body);
         await newProduct.save();
         res.status(201).json(newProduct);
@@ -60,6 +49,10 @@ router.post('/', async(req, res) => {
 // PUT /products/:id
 router.put('/:id', async(req, res) => {
     try {
+        // Censura de texto
+        if (req.body.name) req.body.name = filter.clean(req.body.name);
+        if (req.body.category) req.body.category = filter.clean(req.body.category);
+
         const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
