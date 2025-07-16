@@ -1,8 +1,9 @@
 # StoreBack
 Backend con API REST en Node.js con Express y MongoDB.
 
-# Mongosh
-#UseProduct NombreDElaBD
+Para insertar datos a la bd produccion desde pc local
+1- Mongosh
+2- UseProduct NombreDElaBD
 
 | #   | Consulta                                                                                    | ¿Qué hace?                                                    |
 | --- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -14,6 +15,7 @@ Backend con API REST en Node.js con Express y MongoDB.
 | 6️⃣  | `db.products.find().pretty()`                                                               | Muestra todos los documentos con formato legible.             |
 | 7️⃣  | `db.products.updateMany({ category: "Tecnología" }, { $set: { category: "Electronica" } })` | Cambia todas las categorías `"Tecnología"` a `"Electronica"`. |
 | 8️⃣  | `db.products.updateOne({ name: "Laptop" }, { $set: { category: "Electronica" } })`          | Cambia solo la categoría de `"Laptop"` a `"Electronica"`.     |
+| 9️⃣  | `db.products.insertOne({ name: "Audífonos", price: 300, category: "Tecnología" })`          | Agrega un nuevo producto con nombre `"Audífonos"`.            |
 
 # Puedes insertar productos de ejemplo automáticamente con el siguiente comando:
 npm run send
