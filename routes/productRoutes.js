@@ -14,7 +14,15 @@ router.get('/', async(req, res) => {
 
     try {
         const products = await Product.find(query);
-        res.json(products);
+
+        // Limpiar palabras ofensivas antes de enviar al frontend
+        const cleaned = products.map(p => ({
+            ...p._doc,
+            name: filter.clean(p.name),
+            category: filter.clean(p.category),
+        }));
+        res.json(cleaned);
+
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener productos' });
     }
