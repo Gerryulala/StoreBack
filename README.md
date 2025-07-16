@@ -1,7 +1,7 @@
 # StoreBack
 Backend con API REST en Node.js con Express y MongoDB.
 
-#Mongosh
+# Mongosh
 #UseProduct NombreDElaBD
 
 | #   | Consulta                                                                                    | ¿Qué hace?                                                    |
@@ -15,7 +15,11 @@ Backend con API REST en Node.js con Express y MongoDB.
 | 7️⃣  | `db.products.updateMany({ category: "Tecnología" }, { $set: { category: "Electronica" } })` | Cambia todas las categorías `"Tecnología"` a `"Electronica"`. |
 | 8️⃣  | `db.products.updateOne({ name: "Laptop" }, { $set: { category: "Electronica" } })`          | Cambia solo la categoría de `"Laptop"` a `"Electronica"`.     |
 
-Postman
+# Puedes insertar productos de ejemplo automáticamente con el siguiente comando:
+npm run send
+
+
+# Postman
 📬 Endpoints de la API REST (localhost:3000/products)
 
 | #   | Método | Endpoint        | ¿Qué hace?                                          |
