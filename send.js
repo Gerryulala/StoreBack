@@ -10,7 +10,8 @@ const products = [
 async function seedProducts() {
     for (const product of products) {
         try {
-            const res = await axios.post('http://localhost:3000/products', product);
+            const res = await axios.post('https://storeback-o9pt.onrender.com/products', product);
+            // const res = await axios.post('http://localhost:3000/products', product);
             console.log(`✅ Insertado: ${res.data.name}`);
         } catch (error) {
             console.error(`❌ Error al insertar ${product.name}:`);
