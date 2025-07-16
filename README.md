@@ -1,9 +1,13 @@
 # StoreBack
 Backend con API REST en Node.js con Express y MongoDB.
 
-Para insertar datos a la bd produccion desde pc local
+Para insertar datos a la bd local
 1- Mongosh
-2- UseProduct NombreDElaBD
+2- Use NombreDElaBD
+
+Para insertar datos a la bd produccion
+1- mongosh "mongodb+srv://gerardourb04:RIzXejvOuLe7bMIR@cluster0.rf3xsjh.mongodb.net/NombreDElaBD"
+
 
 | #   | Consulta                                                                                    | ¿Qué hace?                                                    |
 | --- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
